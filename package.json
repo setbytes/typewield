@@ -1,0 +1,21 @@
+{
+  "name": "decorator-logger",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node build/index.js",
+    "watch": "nodemon -e ts -w ./src -x npm run dev",
+    "dev": "ts-node-dev --ignore-watch node_modules src/index.ts -w ./src"
+  },
+  "dependencies": {
+    "nodemon": "^2.0.20",
+    "typescript": "^4.9.4"
+  },
+  "devDependencies": {
+    "ts-node-dev": "^2.0.0"
+  },
+  "author": "Lucas Lopes",
+  "license": "ISC"
+}
