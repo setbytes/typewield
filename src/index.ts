@@ -2,10 +2,15 @@
 @Print()
 @Class
 class test {
+  @NoNegative
+  private myNumber: number
+  constructor(n: number) {
+    this.myNumber = n
+  }
   @Logger()
   @Decorator()
   log(s: string) {
-    console.log('ok4', s)
+    console.log('ok4', s, this.myNumber)
   }
 }
 
@@ -51,5 +56,23 @@ function Class(constructor: Constructor) {
   console.log('Class', constructor.prototype);
 }
 
-new test().log('tes');
-(<any>new test()).print(); // method added by decorator
+function NoNegative(target: any, propertyKey: string) {
+  delete target[propertyKey]
+  Object.defineProperty(target, propertyKey, {
+    get: function(): any {
+      console.log('get propertie')
+      return target['_' + propertyKey]
+    },
+    set: function(value: any): void {
+      if(value < 0) {
+        throw new Error('negative value')
+      } else {
+        console.log('set propertie')
+        return target['_' + propertyKey] = value
+      }
+    }
+  })
+}
+
+new test(10).log('tes');
+(<any>new test(10)).print(); // method added by decorator
