@@ -1,2 +1,3 @@
-import 'module-alias/register';
-export * from '@/app/decorators/logger';
+import { Logger } from './app/decorators/logger';
+
+export { Logger }

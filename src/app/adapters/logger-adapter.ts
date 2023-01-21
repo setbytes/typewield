@@ -1,4 +1,4 @@
-import { LoggerFactory } from "@/app/factories/logger-factory"
+import { LoggerFactory } from "../factories/logger-factory"
 
 export class LoggerAdapter {
   static createLoggerAdapter(functionName: string, originalFunction: Function): any {
