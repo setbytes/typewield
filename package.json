@@ -1,10 +1,11 @@
 {
   "name": "typescript-decorator",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc --declaration",
     "start": "node dist/index.js",
     "watch": "nodemon -e ts -w ./src -x npm run dev",
     "dev": "nodemon --watch 'src/' --exec 'npm run build && ts-node src/index.ts' -e ts"
