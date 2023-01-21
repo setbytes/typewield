@@ -1,4 +1,8 @@
 ## How to use
+```shell
+npm i typescript-decorator
+```
+
 
 ```js
 class TestDecorator {
