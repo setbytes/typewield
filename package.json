@@ -7,8 +7,9 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
+    "start": "npm run test:unit",
     "build": "npm run test:ci && tsc --declaration && cp package.json README.md ./dist",
-    "test": "jest --passWithNoTests --silent=false --noStackTrace --runInBand",
+    "test": "jest --passWithNoTests --silent=false --noStackTrace=false --runInBand",
     "test:unit": "npm test -- --watch",
     "test:ci": "npm test -- --coverage",
     "lint": "eslint .",

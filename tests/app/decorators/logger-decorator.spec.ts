@@ -13,4 +13,17 @@ describe('@Logger Decorator', () => {
     const result = new LoggerDecorator().run(message, year);
     expect(result).toStrictEqual([message, year])
   })
+
+  it('should run with this binding successfuly', () => {
+    class LoggerDecorator {
+      public checkThis = 'binded'
+      @Logger
+      run(value: string, num: number) {
+        return [this.checkThis]
+      }
+    }
+
+    const result = new LoggerDecorator().run('binded', 0);
+    expect(result).toStrictEqual(['binded'])
+  })
 })
