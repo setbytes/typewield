@@ -5,6 +5,8 @@ npm i typescript-decorator
 
 
 ```js
+import { Logger } from 'typescript-decorator'
+
 class TestDecorator {
   @Logger
   logging(value: string, num: number) {

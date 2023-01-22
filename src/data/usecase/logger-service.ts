@@ -9,9 +9,13 @@ export class LoggerService implements LoggerUseCase {
   }
 
   log(params: Array<any>, functionName: string, originalFunction: Function): any {
-    this.logger.info('[INPUT]', `[${functionName}]`, params)
+    if (params.length) {
+      this.logger.info('[INPUT]', `[${functionName}]`, params)
+    }
     const result = originalFunction(...params)
-    this.logger.info('[OUTPUT]', `[${functionName}]`, result)
+    Promise.resolve(result).then(() => {
+      this.logger.info('[OUTPUT]', `[${functionName}]`, result)
+    })
     return result
   }
 }

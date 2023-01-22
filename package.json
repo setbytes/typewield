@@ -1,6 +1,6 @@
 {
   "name": "typescript-decorator",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Decorators for typescript",
   "author": "Lucas Lopes",
   "license": "MIT",
