@@ -1,10 +1,10 @@
-import { LoggerProtocol } from '../../core/domain/logger-protocol'
+import { Logger } from '../../core/domain/logger-protocol'
 import { LoggerUseCase } from '../../core/usecase/logger-usecase'
 
 export class LoggerService implements LoggerUseCase {
-  private readonly logger: LoggerProtocol
+  private readonly logger: Logger
 
-  constructor(logger: LoggerProtocol) {
+  constructor(logger: Logger) {
     this.logger = logger
   }
 
