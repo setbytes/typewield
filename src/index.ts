@@ -1,3 +1,1 @@
-import { Logger } from './app/decorators/logger';
-
-export { Logger }
+export * from './app/decorators/logger-decorator';

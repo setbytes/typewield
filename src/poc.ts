@@ -1,7 +1,7 @@
 @LoggerClass()
 @Print()
 @Class
-class test {
+class testD {
   @NoNegative
   private myNumber: number
   constructor(n: number) {
@@ -80,5 +80,5 @@ function Required(target: Object, propertyKey: string, parameterIndex: number) {
   console.log('3', parameterIndex)
 }
 
-new test(10).log('tes');
-(<any>new test(10)).print(); // method added by decorator
+new testD(10).log('tes');
+(<any>new testD(10)).print(); // method added by decorator
