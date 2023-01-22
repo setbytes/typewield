@@ -1,8 +1,8 @@
-import { LoggerProtocol } from "../../core/domain/logger-protocol";
+import { LoggerProtocol } from '../../core/domain/logger-protocol'
 
 export class Logger implements LoggerProtocol {
   log(...args: any[]): void {
-    console.log('[LOG]', ...args);
+    console.log('[LOG]', ...args)
   }
 
   info(...args: any[]): void {

@@ -1,12 +1,14 @@
 @LoggerClass()
 @Print()
 @Class
-class testD {
+class TestD {
   @NoNegative
-  private myNumber: number
+  private readonly myNumber: number
+
   constructor(n: number) {
     this.myNumber = n
   }
+
   @Logger()
   @Decorator()
   log(@Required value: string) {
@@ -22,7 +24,7 @@ function Logger(): Function {
 }
 
 // class decorator
-type Constructor = { new(...args: Array<any>): {} }
+type Constructor = new(...args: Array<any>) => {}
 
 function LoggerClass(): Function {
   return function<T extends Constructor>(target: T) {
@@ -52,8 +54,8 @@ function Decorator() {
 }
 
 function Class(constructor: Constructor) {
-  console.log('Class', constructor);
-  console.log('Class', constructor.prototype);
+  console.log('Class', constructor)
+  console.log('Class', constructor.prototype)
 }
 
 function NoNegative(target: any, propertyKey: string) {
@@ -68,7 +70,7 @@ function NoNegative(target: any, propertyKey: string) {
         throw new Error('negative value')
       } else {
         console.log('set propertie')
-        return target['_' + propertyKey] = value
+        target['_' + propertyKey] = value
       }
     }
   })
@@ -80,5 +82,5 @@ function Required(target: Object, propertyKey: string, parameterIndex: number) {
   console.log('3', parameterIndex)
 }
 
-new testD(10).log('tes');
-(<any>new testD(10)).print(); // method added by decorator
+new TestD(10).log('tes');
+(new TestD(10) as any).print() // method added by decorator
