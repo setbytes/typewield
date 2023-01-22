@@ -18,12 +18,41 @@ describe('@Logger Decorator', () => {
     class LoggerDecorator {
       public checkThis = 'binded'
       @Logger
-      run(value: string, num: number) {
+      run() {
         return [this.checkThis]
       }
     }
 
-    const result = new LoggerDecorator().run('binded', 0);
+    const result = new LoggerDecorator().run();
     expect(result).toStrictEqual(['binded'])
+  })
+
+  it('should run a async function successfuly', async () => {
+    class LoggerDecorator {
+      @Logger
+      async run() {
+        const result = await new Promise((resolve) => {
+          setTimeout(() => {
+            resolve('promise')
+          }, 40);
+        })
+        return result
+      }
+    }
+
+    const result = await new LoggerDecorator().run();
+    expect(result).toBe('promise')
+  })
+
+  it('should run a static function successfuly', async () => {
+    class LoggerDecorator {
+      @Logger
+      static run() {
+        return 'static function'
+      }
+    }
+
+    const result = LoggerDecorator.run();
+    expect(result).toBe('static function')
   })
 })
