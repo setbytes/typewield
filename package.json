@@ -1,6 +1,6 @@
 {
   "name": "typescript-decorator",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "Decorators for typescript",
   "author": "Lucas Lopes",
   "license": "MIT",
@@ -35,9 +35,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/lucasscoding/typescript-decorator"
+    "url": "https://github.com/lucasshz/typescript-decorator"
   },
   "bugs": {
-    "url": "https://github.com/lucasscoding/typescript-decorator/issues"
+    "url": "https://github.com/lucasshz/typescript-decorator/issues"
   }
 }

@@ -1,19 +1,19 @@
 import { Logger } from '../../core/domain/logger-protocol'
 
 export class LoggerImpl implements Logger {
-  log(...args: any[]): void {
+  log(...args: Array<any>): void {
     console.log('[LOG]', ...args)
   }
 
-  info(...args: any[]): void {
+  info(...args: Array<any>): void {
     console.info('[INFO]', ...args)
   }
 
-  warn(...args: any[]): void {
+  warn(...args: Array<any>): void {
     console.warn('[WARN]', ...args)
   }
 
-  error(...args: any[]): void {
+  error(...args: Array<any>): void {
     console.error('[ERROR]', ...args)
   }
 }
