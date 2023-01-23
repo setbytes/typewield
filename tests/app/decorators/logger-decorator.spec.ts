@@ -1,3 +1,4 @@
+import { faker } from '@faker-js/faker'
 import { Logger } from '../../../src'
 
 describe('@Logger Decorator', () => {
@@ -8,23 +9,23 @@ describe('@Logger Decorator', () => {
         return [value, num]
       }
     }
-    const message = 'hello'
-    const year = 2023
+    const message = faker.lorem.word()
+    const year = Number(faker.random.numeric())
     const result = new LoggerDecorator().run(message, year);
     expect(result).toStrictEqual([message, year])
   })
 
   it('should run with this binding successfuly', () => {
     class LoggerDecorator {
-      public checkThis = 'binded'
+      public binded = 'binded'
       @Logger
       run() {
-        return [this.checkThis]
+        return this.binded
       }
     }
 
     const result = new LoggerDecorator().run();
-    expect(result).toStrictEqual(['binded'])
+    expect(result).toBe('binded')
   })
 
   it('should run a async function successfuly', async () => {
@@ -54,5 +55,16 @@ describe('@Logger Decorator', () => {
 
     const result = LoggerDecorator.run();
     expect(result).toBe('static function')
+  })
+
+  it('should log an error successfuly', () => {
+    class LoggerDecorator {
+      @Logger
+      static run(value: string) {
+        throw new Error(value)
+      }
+    }
+    const message = faker.lorem.words()
+    expect(() => LoggerDecorator.run(message)).toThrowError(new Error(message))
   })
 })
