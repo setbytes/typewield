@@ -1,8 +1,19 @@
+type Method = | 'get' | 'GET'
+| 'delete' | 'DELETE'
+| 'head' | 'HEAD'
+| 'options' | 'OPTIONS'
+| 'post' | 'POST'
+| 'put' | 'PUT'
+| 'patch' | 'PATCH'
+| 'purge' | 'PURGE'
+| 'link' | 'LINK'
+| 'unlink' | 'UNLINK'
+
 export type HttpRequest = {
   headers?: any
   url: string
   params?: any
-  method?: 'POST' | 'GET' | 'PUT' | 'DELETE'
+  method?: Method
   data?: any
 }
 
@@ -11,6 +22,6 @@ export type HttpResponse<T> = {
   data?: T
 }
 
-export interface HttpClient<T = any> {
-  send(request: HttpRequest): Promise<HttpResponse<T>>
+export interface HttpClient {
+  send(request: HttpRequest): Promise<HttpResponse<any>>
 }

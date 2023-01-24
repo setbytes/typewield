@@ -5,7 +5,6 @@ const http = axios.create({})
 
 export class HttpAxios implements HttpClient {
   async send(request: HttpRequest): Promise<HttpResponse<any>> {
-    return http.get(request.url, { data: request.data })
-      .then(response => ({ statusCode: response.status, data: response.data }))
+    return http(request).then(response => ({ statusCode: response.status, data: response.data }))
   }
 }
