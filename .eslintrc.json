@@ -20,6 +20,7 @@
       "@typescript-eslint/prefer-nullish-coalescing": "Off",
       "@typescript-eslint/explicit-function-return-type": "Off",
       "@typescript-eslint/ban-types": "Off",
-      "@typescript-eslint/no-dynamic-delete": "Off"
+      "@typescript-eslint/no-dynamic-delete": "Off",
+      "@typescript-eslint/restrict-plus-operands": "Off"
   }
 }
