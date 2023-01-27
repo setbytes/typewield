@@ -1,4 +1,5 @@
-import { HttpClient, HttpRequest, HttpResponse } from '../../core/model/http'
+import { HttpClient } from '../../core/domain/http-protocol'
+import { HttpRequest, HttpResponse } from '../../core/model/http'
 
 export class HttpClientImpl implements HttpClient {
   async send(request: HttpRequest): Promise<HttpResponse<any>> {

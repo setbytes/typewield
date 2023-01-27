@@ -21,7 +21,3 @@ export type HttpResponse<T> = {
   statusCode: number
   data?: T
 }
-
-export interface HttpClient {
-  send(request: HttpRequest): Promise<HttpResponse<any>>
-}
