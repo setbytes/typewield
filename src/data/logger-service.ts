@@ -1,5 +1,5 @@
-import { Logger } from '../../core/domain/logger-protocol'
-import { LoggerUseCase } from '../../core/usecase/logger-usecase'
+import { Logger } from '../core/domain/logger-protocol'
+import { LoggerUseCase } from '../core/usecase/logger-usecase'
 
 export class LoggerService implements LoggerUseCase {
   private readonly logger: Logger
