@@ -1,5 +1,5 @@
-import { Cache } from 'core/model/cache'
-import { CacheUseCase } from 'core/usecase/cache-usecase'
+import { Cache } from '../../core/model/cache'
+import { CacheUseCase } from '../../core/usecase/cache-usecase'
 import { CacheDatabase } from '../../core/domain/cache-protocol'
 
 export class CacheService implements CacheUseCase {

@@ -1,6 +1,6 @@
 import { CacheSingleton } from '../singletons/cache-singleton'
 import { CacheUseCase } from '../../core/usecase/cache-usecase'
-import { CacheService } from 'data/usecase/cache-service'
+import { CacheService } from '../../data/usecase/cache-service'
 
 export class CacheFactory {
   public static createCache(): CacheUseCase {

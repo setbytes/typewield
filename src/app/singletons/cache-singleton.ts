@@ -1,5 +1,5 @@
-import { CacheDatabase } from 'core/domain/cache-protocol'
-import { CacheImpl } from 'infra/cache/cache'
+import { CacheDatabase } from '../../core/domain/cache-protocol'
+import { CacheImpl } from '../../infra/cache/cache'
 
 export class CacheSingleton {
   private static instance: CacheSingleton

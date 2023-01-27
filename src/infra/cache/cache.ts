@@ -1,4 +1,4 @@
-import { Cache } from 'core/model/cache'
+import { Cache } from '../../core/model/cache'
 import { CacheDatabase } from '../../core/domain/cache-protocol'
 
 export class CacheImpl implements CacheDatabase {
