@@ -22,6 +22,9 @@ export class CacheService implements CacheUseCase {
     const cache = this.caches.get(key)
     if (this.isExpired(cache)) {
       this.caches.delete(key)
+      if (this.caches.getAll().size > 100) {
+        setTimeout(() => this.deleteExpired(), 0)
+      }
     }
     return cache
   }
