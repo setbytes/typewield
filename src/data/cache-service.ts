@@ -12,7 +12,7 @@ export class CacheService implements CacheUseCase {
   }
 
   isExpired(cache: Cache) {
-    const timestampNow = new Date().getTime()
+    const timestampNow = Date.now()
     const millisecondsToExpire = this.cacheOptions.expire
     return (timestampNow - cache.expireAt) > millisecondsToExpire
   }
@@ -31,11 +31,11 @@ export class CacheService implements CacheUseCase {
 
   deleteExpired(): boolean {
     const cacheMap = this.caches.getAll()
-    cacheMap.forEach((cache: Cache, key: string) => {
+    for (const [key, cache] of cacheMap) {
       if (this.isExpired(cache)) {
         this.caches.delete(key)
       }
-    })
+    }
     return true
   }
 
@@ -45,7 +45,7 @@ export class CacheService implements CacheUseCase {
     if (isCache) {
       return isCache.data
     } else {
-      const expireAt = new Date().getTime()
+      const expireAt = Date.now()
       const result = originalFunction(...args)
       if (result instanceof Promise) {
         return result.then(data => {
