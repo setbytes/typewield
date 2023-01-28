@@ -15,12 +15,12 @@ export class CacheImpl implements CacheDatabase {
   startBackgroundDeletion() {
     setInterval(() => {
       this.deleteExpired()
-    }, this.cacheOptions.checkInterval || 300_000)
+    }, this.cacheOptions.checkInterval || 300_000) // 5 minutes
   }
 
   isExpired(cache: Cache) {
     const timestampNow = Date.now()
-    const millisecondsToExpire = this.cacheOptions.expire
+    const millisecondsToExpire = this.cacheOptions.expire || 30_000 // 30 seconds
     return (timestampNow - cache.expireAt) > millisecondsToExpire
   }
 
