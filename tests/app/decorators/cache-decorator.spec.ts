@@ -10,7 +10,6 @@ describe('Cache Decorators', () => {
           return {value, num}
         }
       }
-  
       const message = faker.random.word()
       const num = Number(faker.random.numeric())
       const resultNoCache = new CacheDecorator().run(message, num);
@@ -38,7 +37,7 @@ describe('Cache Decorators', () => {
   describe('@CacheParam', () => {
     it('should run no async decorator successfuly', () => {
       class CacheParamDecorator {
-        @CacheParam({ expire: 10 })
+        @CacheParam({ expire: 10, logger: true })
         run(value: string, num: number) {
           return {value, num}
         }
@@ -54,7 +53,7 @@ describe('Cache Decorators', () => {
   
     it('should run async decorator successfuly', async () => {
       class CacheParamDecorator {
-        @CacheParam({ expire: 10 })
+        @CacheParam({ expire: 10, logger: true })
         async run(value: string, num: number) {
           return Promise.resolve({value, num})
         }

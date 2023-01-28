@@ -5,4 +5,6 @@ export type Cache = {
 
 export type CacheOptions = {
   expire: number
+  checkInterval?: number
+  logger?: boolean
 }

@@ -1,48 +1,35 @@
-import { Cache, CacheOptions } from '../core/model/cache'
 import { CacheUseCase } from '../core/usecase/cache-usecase'
 import { CacheDatabase } from '../core/domain/cache-protocol'
+import { Logger } from 'core/domain/logger-protocol'
+import { CacheOptions } from 'core/model/cache'
 
 export class CacheService implements CacheUseCase {
   private readonly cacheOptions: CacheOptions
   private readonly caches: CacheDatabase
+  private readonly logger: Logger
 
-  constructor(cacheOptions: CacheOptions, caches: CacheDatabase) {
+  constructor(cacheOptions: CacheOptions, caches: CacheDatabase, logger: Logger) {
     this.cacheOptions = cacheOptions
     this.caches = caches
-  }
-
-  isExpired(cache: Cache) {
-    const timestampNow = Date.now()
-    const millisecondsToExpire = this.cacheOptions.expire
-    return (timestampNow - cache.expireAt) > millisecondsToExpire
+    this.logger = logger
   }
 
   get(key: string) {
     if (!this.caches.has(key)) return
     const cache = this.caches.get(key)
-    if (this.isExpired(cache)) {
+    if (this.caches.isExpired(cache)) {
       this.caches.delete(key)
-      if (this.caches.getAll().size > 100) {
-        setTimeout(() => this.deleteExpired(), 0)
-      }
     }
     return cache
   }
 
-  deleteExpired(): boolean {
-    const cacheMap = this.caches.getAll()
-    for (const [key, cache] of cacheMap) {
-      if (this.isExpired(cache)) {
-        this.caches.delete(key)
-      }
-    }
-    return true
-  }
-
-  cache(args: Array<any>, originalFunction: Function) {
+  cache(args: Array<any>, functionName: string, originalFunction: Function) {
     const key = JSON.stringify(args)
     const isCache = this.get(key)
     if (isCache) {
+      if (this.cacheOptions.logger) {
+        this.logger.info('[CACHE]', `[${functionName}]`, isCache)
+      }
       return isCache.data
     } else {
       const expireAt = Date.now()

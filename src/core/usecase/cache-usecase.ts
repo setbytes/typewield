@@ -1,5 +1,4 @@
 export interface CacheUseCase {
   get(key: string): any
-  deleteExpired(): boolean
-  cache(args: Array<any>, originalFunction: Function): any
+  cache(args: Array<any>, functionName: string, originalFunction: Function): any
 }

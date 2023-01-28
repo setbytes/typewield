@@ -6,4 +6,6 @@ export interface CacheDatabase {
   getAll(): Map<string, Cache>
   delete(key: string): boolean
   set(key: string, data: Cache): void
+  deleteExpired(): boolean
+  isExpired(cache: Cache): boolean
 }
