@@ -19,4 +19,8 @@ export class CacheImpl implements CacheDatabase {
   getAll(): Map<string, Cache> {
     return this.caches
   }
+
+  set(key: string, data: Cache): void {
+    this.caches.set(key, data)
+  }
 }

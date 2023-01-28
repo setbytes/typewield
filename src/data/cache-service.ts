@@ -33,4 +33,23 @@ export class CacheService implements CacheUseCase {
     })
     return true
   }
+
+  cache(args: Array<any>, originalFunction: Function) {
+    const key = JSON.stringify(args)
+    const isCache = this.get(key)
+    if (isCache) {
+      return isCache.data
+    } else {
+      const expireAt = new Date().getTime()
+      const result = originalFunction(...args)
+      if (result instanceof Promise) {
+        return result.then(data => {
+          this.caches.set(key, { data, expireAt })
+          return data
+        })
+      }
+      this.caches.set(key, { data: result, expireAt })
+      return result
+    }
+  }
 }

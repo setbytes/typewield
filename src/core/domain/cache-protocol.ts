@@ -5,4 +5,5 @@ export interface CacheDatabase {
   has(key: string): boolean
   getAll(): Map<string, Cache>
   delete(key: string): boolean
+  set(key: string, data: Cache): void
 }
