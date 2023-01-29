@@ -2,7 +2,7 @@ import { Method } from '../../core/model/http'
 import { HttpFactory } from '../factories/http-factory'
 
 export class HttpAdapter {
-  static createHttpAdapter(method: Method, url: string, params: any, body: any, query: any, options: any, functionName: string) {
+  static createHttpAdapter(method: Method, url: string, params: any, body: any, query: any, options: any, functionName: string): Function {
     return function (...args: Array<any>) {
       const paramsMatch = url.match(/\/:(\w+)/g) || []
       const values = paramsMatch.map((param: string) => '/' + args[params[param.slice(2)]])

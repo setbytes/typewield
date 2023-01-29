@@ -13,8 +13,8 @@ export function HttpClient(httpClientOptions: HttpClientOptions): Function {
   }
 }
 
-export function GetRequest(url: string, options?: any) {
-  return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+export function GetRequest(url: string, options?: any): Function {
+  return function (target: any, propertyKey: string, descriptor: PropertyDescriptor): void {
     const params = target[propertyKey].params
     const body = target[propertyKey].body
     const query = target[propertyKey].query
@@ -22,8 +22,8 @@ export function GetRequest(url: string, options?: any) {
   }
 }
 
-export function PostRequest(url: string, options?: any) {
-  return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+export function PostRequest(url: string, options?: any): Function {
+  return function (target: any, propertyKey: string, descriptor: PropertyDescriptor): void {
     const params = target[propertyKey].params
     const body = target[propertyKey].body
     const query = target[propertyKey].query
