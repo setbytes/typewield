@@ -21,6 +21,7 @@
       "@typescript-eslint/explicit-function-return-type": "Off",
       "@typescript-eslint/ban-types": "Off",
       "@typescript-eslint/no-dynamic-delete": "Off",
-      "@typescript-eslint/restrict-plus-operands": "Off"
+      "@typescript-eslint/restrict-plus-operands": "Off",
+      "@typescript-eslint/no-useless-constructor": "Off"
   }
 }

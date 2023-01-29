@@ -1,4 +1,4 @@
-import { CacheOptions } from 'core/model/cache'
+import { CacheOptions } from '../../core/model/cache'
 import { CacheDatabase } from '../../core/domain/cache-protocol'
 import { CacheImpl } from '../../infra/cache/cache'
 

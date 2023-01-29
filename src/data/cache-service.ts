@@ -1,7 +1,7 @@
 import { CacheUseCase } from '../core/usecase/cache-usecase'
 import { CacheDatabase } from '../core/domain/cache-protocol'
-import { Logger } from 'core/domain/logger-protocol'
-import { CacheOptions } from 'core/model/cache'
+import { Logger } from '../core/domain/logger-protocol'
+import { CacheOptions } from '../core/model/cache'
 
 export class CacheService implements CacheUseCase {
   private readonly cacheOptions: CacheOptions
