@@ -10,6 +10,7 @@ export class HttpService implements HttpUseCase {
   }
 
   send(request: HttpRequest): Promise<any> {
+    console.log(request)
     return this.http.send(request)
   }
 }

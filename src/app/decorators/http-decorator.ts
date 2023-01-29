@@ -1,8 +1,6 @@
+import { HttpClientOptions } from '../../core/model/http'
+import { HttpAdapter } from '../../app/adapters/http-adapter'
 import { Constructor } from '../../core/model/constructor'
-
-type HttpClientOptions = {
-  axiosInstance?: any
-}
 
 export function HttpClient(httpClientOptions: HttpClientOptions): Function {
   return function<T extends Constructor>(target: T) {
@@ -19,19 +17,7 @@ export function GetRequest(url: string, options?: any) {
   return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
     const params = target[propertyKey].params
     const body = target[propertyKey].body
-
-    descriptor.value = function (...args: Array<any>) {
-      const dynamicParams = url.match(/:(\w+)/g) || []
-      const dynamicValues = dynamicParams.map((param: string) => args[params[param.slice(1)]])
-      const dynamicBody = args[body.index]
-
-      let urlWithParams = url
-      dynamicParams.forEach((param, index) => {
-        urlWithParams = urlWithParams.replace(param, dynamicValues[index].toString())
-      })
-
-      console.log(dynamicValues)
-      return [dynamicValues, dynamicBody]
-    }
+    const query = target[propertyKey].query
+    descriptor.value = HttpAdapter.createHttpAdapter('GET', url, params, body, query, options)
   }
 }

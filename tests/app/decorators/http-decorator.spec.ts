@@ -1,5 +1,7 @@
 import { faker } from '@faker-js/faker'
-import { HttpClient, GetRequest, Param, Body } from '../../../src'
+import axios from 'axios'
+
+import { HttpClient, GetRequest, Param, Body, Query } from '../../../src'
 
 describe('Http Decorators', () => {
   describe('@HttpClient', () => {
@@ -12,16 +14,14 @@ describe('Http Decorators', () => {
       expect(httpRequest._httpClient).toBe('axiosInstance')
     })
 
-    it('should make a get request succesfully', () => {
-      @HttpClient({})
+    it('should make a get request succesfully', async () => {
+      const axiosInstance = axios.create({})
+      @HttpClient({ axiosInstance })
       class HttpRequest {
-        [x: string]: any
-
-        @GetRequest('http://localhost/:id/')
-        async findAll(@Param('id') myId: string, @Body data: any): Promise<any> {}
+        @GetRequest('http://localhost:3001/posts/:id')
+        async findAll(@Param('id') myId: number, @Body data: any, @Query query: any): Promise<any> {}
       }
 
-      const id = faker.random.numeric(8)
       const obj = {
         name: faker.name.firstName(),
         email: faker.internet.email(),
@@ -30,8 +30,10 @@ describe('Http Decorators', () => {
       };
       
       const httpRequest = new HttpRequest()
-      const response = httpRequest.findAll(id, obj)
-      expect(response).toStrictEqual([[id], obj])
+      const response = await httpRequest.findAll(1, obj, obj)
+      expect(response).toBeTruthy()
+      expect(response.statusCode).toBe(200)
+
     })
   })
 })

@@ -1,4 +1,4 @@
-type Method = | 'get' | 'GET'
+export type Method = | 'get' | 'GET'
 | 'delete' | 'DELETE'
 | 'head' | 'HEAD'
 | 'options' | 'OPTIONS'
@@ -20,4 +20,8 @@ export type HttpRequest = {
 export type HttpResponse<T> = {
   statusCode: number
   data?: T
+}
+
+export type HttpClientOptions = {
+  axiosInstance?: any
 }
