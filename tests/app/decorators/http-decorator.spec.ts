@@ -1,9 +1,18 @@
 import { faker } from '@faker-js/faker'
 import axios from 'axios'
 
-import { HttpClient, GetRequest, Param, Body, Query } from '../../../src'
+import { HttpClient, GetRequest, Param, Body, Query, PostRequest } from '../../../src'
 
 describe('Http Decorators', () => {
+  const axiosInstance = axios.create({})
+
+  const obj = {
+    name: faker.name.firstName(),
+    email: faker.internet.email(),
+    address: faker.address.streetAddress(),
+    phone: faker.phone.number(),
+  };
+
   describe('@HttpClient', () => {
     it('should add axios instance', () => {
       @HttpClient({ axiosInstance: 'axiosInstance' })
@@ -11,29 +20,62 @@ describe('Http Decorators', () => {
         [x: string]: any
       }
       const httpRequest = new HttpRequest()
-      expect(httpRequest._httpClient).toBe('axiosInstance')
+      expect(httpRequest._httpClientOptions.axiosInstance).toBe('axiosInstance')
+    })
+
+    it('should make a post request succesfully', async () => {
+      @HttpClient({ axiosInstance })
+      class HttpRequest {
+        @PostRequest('http://localhost:3001/users')
+        async save(@Body data: any): Promise<any> {}
+      }
+
+      const httpRequest = new HttpRequest()
+      const response = await httpRequest.save(obj)
+      expect(response).toBeTruthy()
+      expect(response.statusCode).toBe(201)
     })
 
     it('should make a get request succesfully', async () => {
-      const axiosInstance = axios.create({})
       @HttpClient({ axiosInstance })
       class HttpRequest {
-        @GetRequest('http://localhost:3001/posts/:id')
-        async findAll(@Param('id') myId: number, @Body data: any, @Query query: any): Promise<any> {}
+        @GetRequest('http://localhost:3001/users')
+        async findAll(): Promise<any> {}
       }
-
-      const obj = {
-        name: faker.name.firstName(),
-        email: faker.internet.email(),
-        address: faker.address.streetAddress(),
-        phone: faker.phone.number(),
-      };
       
       const httpRequest = new HttpRequest()
-      const response = await httpRequest.findAll(1, obj, obj)
+      const response = await httpRequest.findAll()
       expect(response).toBeTruthy()
       expect(response.statusCode).toBe(200)
+    })
 
+    it('should make a request to find by id', async () => {
+      @HttpClient({ axiosInstance })
+      class HttpRequest {
+        @GetRequest('http://localhost:3001/users/:id')
+        async findById(@Param('id') myId: number): Promise<any> {}
+      }
+      
+      const httpRequest = new HttpRequest()
+      const id = 1
+      const response = await httpRequest.findById(id)
+      expect(response).toBeTruthy()
+      expect(response.data.id).toBe(id)
+      expect(response.statusCode).toBe(200)
+    })
+
+    it('should make a request with query string', async () => {
+      @HttpClient({ axiosInstance })
+      class HttpRequest {
+        @GetRequest('http://localhost:3001/users')
+        async findById(@Query query: any): Promise<any> {}
+      }
+      
+      const httpRequest = new HttpRequest()
+
+      const response = await httpRequest.findById(obj)
+      expect(response).toBeTruthy()
+      expect(response.statusCode).toBe(200)
     })
   })
 })

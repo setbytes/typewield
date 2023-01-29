@@ -37,7 +37,7 @@ describe('Cache Decorators', () => {
   describe('@CacheParam', () => {
     it('should run no async decorator successfuly', () => {
       class CacheParamDecorator {
-        @CacheParam({ expire: 10, logger: true })
+        @CacheParam({ expire: 10 })
         run(value: string, num: number) {
           return {value, num}
         }
@@ -53,7 +53,7 @@ describe('Cache Decorators', () => {
   
     it('should run async decorator successfuly', async () => {
       class CacheParamDecorator {
-        @CacheParam({ expire: 10, logger: true })
+        @CacheParam({ expire: 10 })
         async run(value: string, num: number) {
           return Promise.resolve({value, num})
         }
