@@ -73,11 +73,12 @@ const resultWithCache = new CacheParamDecorator().run(message, 10);
 
 ### @HttpClient({})
 
-```ts
+```js
 import axios from 'axios'
 
 const axiosInstance = axios.create({})
 
+// if you dont use a axios instance this will be using fetch by default
 @HttpClient({ axiosInstance })
 class HttpRequest {
   // post request example
@@ -97,4 +98,8 @@ class HttpRequest {
   async findByQueryString(@Query query: any): Promise<any> {}
 }
 
+
+// others avilable decorators 
+// @PostRequest @GetRequest @PutRequest @DeleteRequest @HeadRequest 
+// @PurgeRequest @LinkRequest @UnlinkRequest @OptionsRequest @PatchRequest
 ```
