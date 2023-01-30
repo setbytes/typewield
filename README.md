@@ -70,3 +70,31 @@ const resultWithCache = new CacheParamDecorator().run(message, 10);
 ```shell
 [INFO] [CACHE] [run] { data: { value: 'cache', num: 1 }, expireAt: 1674913252407 }
 ```
+
+### @HttpClient({})
+
+```ts
+import axios from 'axios'
+
+const axiosInstance = axios.create({})
+
+@HttpClient({ axiosInstance })
+class HttpRequest {
+  // post request example
+  @PostRequest('http://localhost:3001/users')
+  async save(@Body data: any): Promise<any> {}
+
+  //get request example
+  @GetRequest('http://localhost:3001/users')
+  async findAll(): Promise<any> {}
+
+  // get using a param on url
+  @GetRequest('http://localhost:3001/users/:id')
+  async findById(@Param('id') myId: number): Promise<any> {}
+
+  // get ussing query string
+  @GetRequest('http://localhost:3001/users')
+  async findByQueryString(@Query query: any): Promise<any> {}
+}
+
+```
