@@ -14,8 +14,8 @@ export class LoggerService implements LoggerUseCase {
     }
     try {
       const result = originalFunction(...params)
-      Promise.resolve(result).then(() => {
-        this.logger.info('[OUTPUT]', `[${functionName}]`, result)
+      Promise.resolve(result).then((data) => {
+        this.logger.info('[OUTPUT]', `[${functionName}]`, data)
       })
       return result
     } catch (error) {
