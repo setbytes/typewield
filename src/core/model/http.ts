@@ -25,6 +25,7 @@ export type HttpResponse<T> = {
 type Headers = Record<string, string | string[] | number | boolean | null>
 
 export type HttpClientOptions = {
+  baseURL?: string
   headers?: Headers
   logger?: boolean
   axiosInstance?: any

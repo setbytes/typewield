@@ -15,11 +15,18 @@ export class HttpService implements HttpUseCase {
   }
 
   send(request: HttpRequest, functionName: string): Promise<any> {
+    let baseURL = request.url.trim()
+    if (!request.url.startsWith('http')) {
+      baseURL = this.httpClientOptions.baseURL || this.httpClientOptions?.axiosInstance.defaults.baseURL
+      baseURL += request.url
+    }
+    const uri = request.params ? baseURL + '?' + new URLSearchParams(request.params) : baseURL
     if (this.httpClientOptions.logger) {
-      const logList = [request.params ? request.url + '?' + new URLSearchParams(request.params) : request.url]
+      const logList = [uri]
       if (request.data) logList.push(request.data)
       this.logger.info(`[${request.method || 'GET'}]`, `[${functionName}]`, ...logList)
     }
+    request.url = baseURL
     return this.http.send(request)
   }
 }

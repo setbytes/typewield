@@ -4,8 +4,7 @@ import axios from 'axios'
 import { HttpClient, GetRequest, Param, Body, Query, PostRequest } from '../../../src'
 
 describe('Http Decorators', () => {
-  const axiosInstance = axios.create({})
-
+  const axiosInstance = axios.create({ baseURL: 'http://localhost:3001' })
   const obj = {
     name: faker.name.firstName(),
     email: faker.internet.email(),
@@ -26,7 +25,7 @@ describe('Http Decorators', () => {
     it('should make a post request succesfully', async () => {
       @HttpClient({ axiosInstance })
       class HttpRequest {
-        @PostRequest('http://localhost:3001/users')
+        @PostRequest('/users')
         async save(@Body data: any): Promise<any> {}
       }
 
@@ -39,7 +38,7 @@ describe('Http Decorators', () => {
     it('should make a get request succesfully', async () => {
       @HttpClient({ axiosInstance })
       class HttpRequest {
-        @GetRequest('http://localhost:3001/users')
+        @GetRequest('/users')
         async findAll(): Promise<any> {}
       }
       
@@ -52,7 +51,7 @@ describe('Http Decorators', () => {
     it('should make a request to find by id', async () => {
       @HttpClient({ axiosInstance })
       class HttpRequest {
-        @GetRequest('http://localhost:3001/users/:id')
+        @GetRequest('/users/:id')
         async findById(@Param('id') myId: number): Promise<any> {}
       }
       
@@ -67,7 +66,7 @@ describe('Http Decorators', () => {
     it('should make a request with query string', async () => {
       @HttpClient({ axiosInstance })
       class HttpRequest {
-        @GetRequest('http://localhost:3001/users')
+        @GetRequest('/users')
         async findById(@Query query: any): Promise<any> {}
       }
       

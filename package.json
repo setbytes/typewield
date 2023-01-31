@@ -8,7 +8,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "start": "npm run test:unit",
-    "serve": "json-server jest-db.json --port=3001 --read-only",
+    "serve": "json-server jest-db.json --port=3001",
     "build": "npm run test:ci && tsc --declaration && cp package.json README.md ./dist",
     "test": " jest --passWithNoTests --silent=false --noStackTrace=false --runInBand",
     "test:unit": "npm test -- --watch",
