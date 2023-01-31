@@ -1,11 +1,12 @@
 {
   "name": "typescript-decorator",
-  "version": "0.2.0",
+  "version": "0.2.4",
   "description": "Decorators for typescript",
   "author": "Lucas Lopes",
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "keywords": ["typescript", "decorators", "logger", "cache", "request"],
   "scripts": {
     "start": "npm run test:unit",
     "serve": "json-server jest-db.json --port=3001",

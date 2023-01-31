@@ -1,9 +1,10 @@
 node_modules
 package-lock.json
-dist
 .vscode
 .DS_Store
-tests
 .eslintignore
 .eslintrc.json
 jest.config.json
+jest-db.json
+src
+tests
