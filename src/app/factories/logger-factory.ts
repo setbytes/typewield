@@ -5,7 +5,6 @@ import { LoggerImpl } from '../../infra/logger/logger'
 export class LoggerFactory {
   static createLogger(): LoggerUseCase {
     const logger = new LoggerImpl()
-    const loggerService = new LoggerService(logger)
-    return loggerService
+    return new LoggerService(logger)
   }
 }

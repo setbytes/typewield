@@ -8,7 +8,6 @@ export class CacheFactory {
   public static createCache(cacheOptions: CacheOptions): CacheUseCase {
     const logger = new LoggerImpl()
     const cacheDatabase = CacheSingleton.getInstance(cacheOptions).getCacheDatabase()
-    const cacheService = new CacheService(cacheOptions, cacheDatabase, logger)
-    return cacheService
+    return new CacheService(cacheOptions, cacheDatabase, logger)
   }
 }
