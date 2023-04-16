@@ -12,5 +12,5 @@
     "baseUrl": "src",
   },
   "include": ["src", "tests"],
-  "exclude": ["node_modules", "tests"]
+  "exclude": []
 }

@@ -1,4 +1,4 @@
-import { HttpRequest, HttpResponse } from '../model/http'
+import { HttpRequest, HttpResponse } from "../model/http";
 
 export interface HttpClient {
   send(request: HttpRequest): Promise<HttpResponse<any>>

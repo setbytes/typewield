@@ -1,4 +1,4 @@
-import { Cache } from '../model/cache'
+import { Cache } from "../model/cache";
 
 export interface CacheDatabase {
   get(key: string): Cache
