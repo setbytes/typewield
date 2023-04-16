@@ -1,8 +1,8 @@
-import { Method } from "../../core/model/http";
+import { Method } from "../../domain/models/http";
 import { HttpFactory } from "../factories/http-factory";
 
 export class HttpAdapter {
-  static createHttpAdapter(method: Method, url: string, params: any, body: any, query: any, options: any, functionName: string): Function {
+  public static createHttpAdapter(method: Method, url: string, params: any, body: any, query: any, options: any, functionName: string): Function {
     return async function(...args: Array<any>) {
       const paramsMatch = url.match(/\/:(\w+)/g) || [];
       const values = paramsMatch.map((param: string) => "/" + args[params[param.slice(2)]]);

@@ -1,5 +1,5 @@
-import { Cache, CacheOptions } from "../../core/model/cache";
-import { CacheDatabase } from "../../core/domain/cache-protocol";
+import { Cache, CacheOptions } from "../../domain/models/cache";
+import { CacheDatabase } from "./protocols/cache-protocol";
 
 export class CacheImpl implements CacheDatabase {
   private readonly cacheOptions: CacheOptions;

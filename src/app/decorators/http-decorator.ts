@@ -1,6 +1,6 @@
-import { HttpClientOptions } from "../../core/model/http";
+import { HttpClientOptions } from "../../domain/models/http";
 import { HttpAdapter } from "../../app/adapters/http-adapter";
-import { Constructor } from "../../core/model/constructor";
+import { Constructor } from "../../domain/models/constructor";
 
 export function HttpClient(httpClientOptions: HttpClientOptions): Function {
   return function<T extends Constructor>(target: T) {

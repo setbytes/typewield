@@ -1,7 +1,7 @@
-import { Logger } from "../core/domain/logger-protocol";
-import { HttpClient } from "../core/domain/http-protocol";
-import { HttpClientOptions, HttpRequest } from "../core/model/http";
-import { HttpUseCase } from "../core/usecase/http-usecase";
+import { Logger } from "../../infra/logger/protocols/logger-protocol";
+import { HttpClient } from "../../infra/http/protocols/http-protocol";
+import { HttpClientOptions, HttpRequest } from "../models/http";
+import { HttpUseCase } from "../usecases/http-usecase";
 
 export class HttpService implements HttpUseCase {
   private readonly http: HttpClient;

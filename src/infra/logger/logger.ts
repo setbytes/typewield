@@ -1,4 +1,4 @@
-import { Logger } from "../../core/domain/logger-protocol";
+import { Logger } from "./protocols/logger-protocol";
 
 export class LoggerImpl implements Logger {
   log(...args: Array<any>): void {

@@ -1,5 +1,5 @@
-import { HttpClient } from "../../core/domain/http-protocol";
-import { HttpRequest, HttpResponse } from "../../core/model/http";
+import { HttpClient } from "./protocols/http-protocol";
+import { HttpRequest, HttpResponse } from "../../domain/models/http";
 
 type AxiosApp = any
 export class HttpAxiosImpl implements HttpClient {

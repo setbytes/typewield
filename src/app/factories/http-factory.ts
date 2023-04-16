@@ -1,12 +1,12 @@
-import { HttpService } from "../../data/http-service";
+import { HttpService } from "../../domain/services/http-service";
 import { HttpClientImpl } from "../../infra/http/http-client";
-import { HttpUseCase } from "../../core/usecase/http-usecase";
+import { HttpUseCase } from "../../domain/usecases/http-usecase";
 import { HttpAxiosImpl } from "../../infra/http/http-axios";
-import { HttpClientOptions } from "../../core/model/http";
+import { HttpClientOptions } from "../../domain/models/http";
 import { LoggerImpl } from "../../infra/logger/logger";
 
 export class HttpFactory {
-  static createHttpRequest(httpClientOptions: HttpClientOptions): HttpUseCase {
+  public static createHttpRequest(httpClientOptions: HttpClientOptions): HttpUseCase {
     const logger = new LoggerImpl();
     const httpClient = new HttpClientImpl();
     const axiosApp = httpClientOptions.axiosInstance;

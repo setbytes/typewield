@@ -1,3 +1,18 @@
 {
-  "users": []
+  "users": [
+    {
+      "name": "Ansley",
+      "email": "Germaine_Bogan10@hotmail.com",
+      "address": "056 Odie Knoll",
+      "phone": "(854) 760-2360",
+      "id": 1
+    },
+    {
+      "name": "Jasen",
+      "email": "Randi98@yahoo.com",
+      "address": "27113 Kuhn Keys",
+      "phone": "230.715.7338 x23067",
+      "id": 2
+    }
+  ]
 }

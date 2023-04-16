@@ -1,5 +1,5 @@
-import { CacheOptions } from "../../core/model/cache";
-import { CacheDatabase } from "../../core/domain/cache-protocol";
+import { CacheOptions } from "../../domain/models/cache";
+import { CacheDatabase } from "../../infra/cache/protocols/cache-protocol";
 import { CacheImpl } from "../../infra/cache/cache";
 
 export class CacheSingleton {
@@ -17,7 +17,7 @@ export class CacheSingleton {
     return CacheSingleton.instance;
   }
 
-  getCacheDatabase(): CacheDatabase {
+  public getCacheDatabase(): CacheDatabase {
     return this.cacheDatabase;
   }
 }

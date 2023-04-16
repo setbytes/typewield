@@ -1,4 +1,4 @@
-import { CacheOptions } from "../../core/model/cache";
+import { CacheOptions } from "../../domain/models/cache";
 import { CacheAdapter } from "../adapters/cache-adapter";
 
 export function Cache(target: any, propertyKey: string, descriptor: PropertyDescriptor): void {
