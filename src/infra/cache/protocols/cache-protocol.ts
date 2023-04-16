@@ -1,4 +1,4 @@
-import { Cache } from "../../../domain/models/cache";
+import { Cache } from "@/domain/models/cache";
 
 export interface CacheDatabase {
   get(key: string): Cache

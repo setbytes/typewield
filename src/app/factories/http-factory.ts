@@ -1,9 +1,9 @@
-import { HttpService } from "../../domain/services/http-service";
-import { HttpClientImpl } from "../../infra/http/http-client";
-import { HttpUseCase } from "../../domain/usecases/http-usecase";
-import { HttpAxiosImpl } from "../../infra/http/http-axios";
-import { HttpClientOptions } from "../../domain/models/http";
-import { LoggerImpl } from "../../infra/logger/logger";
+import { HttpService } from "@/domain/services/http-service";
+import { HttpClientImpl } from "@/infra/http/http-client";
+import { HttpUseCase } from "@/domain/usecases/http-usecase";
+import { HttpAxiosImpl } from "@/infra/http/http-axios";
+import { HttpClientOptions } from "@/domain/models/http";
+import { LoggerImpl } from "@/infra/logger/logger";
 
 export class HttpFactory {
   public static createHttpRequest(httpClientOptions: HttpClientOptions): HttpUseCase {

@@ -1,5 +1,5 @@
-import { Method } from "../../domain/models/http";
-import { HttpFactory } from "../factories/http-factory";
+import { Method } from "@/domain/models/http";
+import { HttpFactory } from "@/app/factories/http-factory";
 
 export class HttpAdapter {
   public static createHttpAdapter(method: Method, url: string, params: any, body: any, query: any, options: any, functionName: string): Function {
@@ -15,7 +15,7 @@ export class HttpAdapter {
       });
 
       const httpRequest = HttpFactory.createHttpRequest(this._httpClientOptions);
-      return await httpRequest.send({ method, url: parseUrl, data, params: queries, headers: options }, functionName);
+      return httpRequest.send({ method, url: parseUrl, data, params: queries, headers: options }, functionName);
     };
   }
 }

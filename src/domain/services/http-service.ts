@@ -1,7 +1,7 @@
-import { Logger } from "../../infra/logger/protocols/logger-protocol";
-import { HttpClient } from "../../infra/http/protocols/http-protocol";
-import { HttpClientOptions, HttpRequest } from "../models/http";
-import { HttpUseCase } from "../usecases/http-usecase";
+import { Logger } from "@/infra/logger/protocols/logger-protocol";
+import { HttpClient } from "@/infra/http/protocols/http-protocol";
+import { HttpClientOptions, HttpRequest } from "@/domain/models/http";
+import { HttpUseCase } from "@/domain/usecases/http-usecase";
 
 export class HttpService implements HttpUseCase {
   private readonly http: HttpClient;
@@ -24,9 +24,10 @@ export class HttpService implements HttpUseCase {
     if (this.httpClientOptions.logger) {
       const logList = [uri];
       if (request.data) logList.push(request.data);
-      this.logger.info(`[${request.method || "GET"}]`, `[${functionName}]`, ...logList);
+      const typeMethod: string = request.method || "GET";
+      this.logger.info(`[${typeMethod}]`, `[${functionName}]`, ...logList);
     }
     request.url = baseURL;
-    return await this.http.send(request);
+    return this.http.send(request);
   }
 }

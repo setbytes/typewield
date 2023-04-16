@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker";
-import { Logger } from "../../infra/logger/protocols/logger-protocol";
-import { LoggerUseCase } from "../usecases/logger-usecase";
-import { LoggerService } from "../../../src/domain/services/logger-service";
+import { Logger } from "@/infra/logger/protocols/logger-protocol";
+import { LoggerUseCase } from "@/domain/usecases/logger-usecase";
+import { LoggerService } from "@/domain/services/logger-service";
 
 describe("LoggerService", () => {
   let logger: Logger;

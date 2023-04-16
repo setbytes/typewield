@@ -3,14 +3,18 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "strictNullChecks": true,
+    "stripInternal": true,
     "outDir": "dist",
     "module": "commonjs",
     "target": "es2019",
     "esModuleInterop": true,
-    "sourceMap": true,
+    "sourceMap": false,
     "rootDirs": ["src", "tests"],
     "baseUrl": "src",
+    "paths": {
+      "@/tests/*": ["../tests/*"],
+      "@/*": ["*"]
+    }
   },
-  "include": ["src", "tests"],
-  "exclude": []
+  "include": ["src", "tests"]
 }

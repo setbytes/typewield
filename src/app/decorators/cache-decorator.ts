@@ -1,5 +1,5 @@
-import { CacheOptions } from "../../domain/models/cache";
-import { CacheAdapter } from "../adapters/cache-adapter";
+import { CacheOptions } from "@/domain/models/cache";
+import { CacheAdapter } from "@/app/adapters/cache-adapter";
 
 export function Cache(target: any, propertyKey: string, descriptor: PropertyDescriptor): void {
   const originalFunction = descriptor.value;

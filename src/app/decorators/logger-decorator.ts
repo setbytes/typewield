@@ -1,4 +1,4 @@
-import { LoggerAdapter } from "../adapters/logger-adapter";
+import { LoggerAdapter } from "@/app/adapters/logger-adapter";
 
 export function Logger(target: any, propertyKey: string, descriptor: PropertyDescriptor): void {
   const originalFunction = descriptor.value;

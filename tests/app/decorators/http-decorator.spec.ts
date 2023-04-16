@@ -1,7 +1,9 @@
-import { faker } from "@faker-js/faker";
 import axios from "axios";
-
-import { HttpClient, GetRequest, Param, Body, Query, PostRequest } from "../../../src";
+import { faker } from "@faker-js/faker";
+import { Body } from "@/app/decorators/body-decorator";
+import { Query } from "@/app/decorators/query-decorator";
+import { Param } from "@/app/decorators/param-decorator";
+import { HttpClient, GetRequest, PostRequest } from "@/app/decorators/http-decorator";
 
 describe("Http Decorators", () => {
   const axiosInstance = axios.create({ baseURL: "http://localhost:3001" });

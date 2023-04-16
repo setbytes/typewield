@@ -1,5 +1,5 @@
-import { CacheOptions } from "../../domain/models/cache";
-import { CacheFactory } from "../factories/cache-factory";
+import { CacheOptions } from "@/domain/models/cache";
+import { CacheFactory } from "@/app/factories/cache-factory";
 
 export class CacheAdapter {
   public static createCacheAdapter(functionName: string, originalFunction: Function): Function {

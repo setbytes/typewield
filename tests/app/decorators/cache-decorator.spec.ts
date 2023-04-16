@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import { Cache, CacheParam } from "../../../src";
+import { Cache, CacheParam } from "@/app/decorators/cache-decorator";
 
 describe("Cache Decorators", () => {
   describe("@Cache", () => {

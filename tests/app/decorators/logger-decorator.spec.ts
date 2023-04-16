@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import { Logger } from "../../../src";
+import { Logger } from "@/app/decorators/logger-decorator";
 
 describe("@Logger Decorator", () => {
   it("should run no async decorator successfuly", () => {
