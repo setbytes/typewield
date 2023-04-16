@@ -6,7 +6,7 @@ import { Param } from "@/app/decorators/param-decorator";
 import { HttpClient, GetRequest, PostRequest } from "@/app/decorators/http-decorator";
 
 describe("Http Decorators", () => {
-  const axiosInstance = axios.create({ baseURL: "http://localhost:3001" });
+  const axiosInstance = axios.create({ baseURL: "http://localhost:3002" });
   const obj = {
     name: faker.name.firstName(),
     email: faker.internet.email(),
