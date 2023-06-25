@@ -2,7 +2,7 @@ import { faker } from "@faker-js/faker";
 import { Logger } from "@/app/decorators/logger-decorator";
 
 describe("@Logger Decorator", () => {
-  it("should run no async decorator successfuly", () => {
+  it("should run no async decorator successfully", () => {
     class LoggerDecorator {
       @Logger
       run(value: string, num: number): Array<any> {
@@ -15,20 +15,20 @@ describe("@Logger Decorator", () => {
     expect(result).toStrictEqual([message, year]);
   });
 
-  it("should run with this binding successfuly", () => {
+  it("should run with this binding successfully", () => {
     class LoggerDecorator {
-      public binded = "binded";
+      public binding = "binding";
       @Logger
       run(): string {
-        return this.binded;
+        return this.binding;
       }
     }
 
     const result = new LoggerDecorator().run();
-    expect(result).toBe("binded");
+    expect(result).toBe("binding");
   });
 
-  it("should run a async function successfuly", async() => {
+  it("should run a async function successfully", async() => {
     class LoggerDecorator {
       @Logger
       async run(): Promise<any> {
@@ -45,7 +45,7 @@ describe("@Logger Decorator", () => {
     expect(result).toBe("promise");
   });
 
-  it("should run a static function successfuly", async() => {
+  it("should run a static function successfully", async() => {
     class LoggerDecorator {
       @Logger
       static run(): string {
@@ -57,7 +57,7 @@ describe("@Logger Decorator", () => {
     expect(result).toBe("static function");
   });
 
-  it("should log an error successfuly", () => {
+  it("should log an error successfully", () => {
     class LoggerDecorator {
       @Logger
       static run(value: string): void {

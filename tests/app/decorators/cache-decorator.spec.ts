@@ -3,7 +3,7 @@ import { Cache, CacheParam } from "@/app/decorators/cache-decorator";
 
 describe("Cache Decorators", () => {
   describe("@Cache", () => {
-    it("should run no async decorator successfuly", () => {
+    it("should run no async decorator successfully", () => {
       class CacheDecorator {
         @Cache
         run(value: string, num: number): any {
@@ -18,7 +18,7 @@ describe("Cache Decorators", () => {
       expect(resultWithCache).toStrictEqual({ value: message, num });
     });
 
-    it("should run async decorator successfuly", async() => {
+    it("should run async decorator successfully", async() => {
       class CacheDecorator {
         @Cache
         async run(value: string, num: number): Promise<any> {
@@ -34,8 +34,9 @@ describe("Cache Decorators", () => {
       expect(resultWithCache).toStrictEqual({ value: message, num });
     });
   });
+
   describe("@CacheParam", () => {
-    it("should run no async decorator successfuly", () => {
+    it("should run no async decorator successfully", () => {
       class CacheParamDecorator {
         @CacheParam({ expire: 10 })
         run(value: string, num: number): any {
@@ -51,7 +52,7 @@ describe("Cache Decorators", () => {
       expect(resultWithCache).toStrictEqual({ value: message, num });
     });
 
-    it("should run async decorator successfuly", async() => {
+    it("should run async decorator successfully", async() => {
       class CacheParamDecorator {
         @CacheParam({ expire: 10 })
         async run(value: string, num: number): Promise<any> {

@@ -24,7 +24,7 @@ describe("Http Decorators", () => {
       expect(httpRequest._httpClientOptions.axiosInstance).toBe("axiosInstance");
     });
 
-    it("should make a post request succesfully", async() => {
+    it("should make a post request successfully", async() => {
       @HttpClient({ axiosInstance })
       class HttpRequest {
         @PostRequest("/users")
@@ -37,7 +37,7 @@ describe("Http Decorators", () => {
       expect(response.statusCode).toBe(201);
     });
 
-    it("should make a get request succesfully", async() => {
+    it("should make a get request successfully", async() => {
       @HttpClient({ axiosInstance })
       class HttpRequest {
         @GetRequest("/users")
