@@ -1,4 +1,4 @@
-import { HttpClient } from "@/infra/http/protocols/http-protocol";
+import { HttpClient } from "@/infra/http/usecases/http-client";
 import { HttpRequest, HttpResponse } from "@/domain/models/http";
 
 type AxiosApp = any

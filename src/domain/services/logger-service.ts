@@ -1,4 +1,4 @@
-import { Logger } from "@/infra/logger/protocols/logger-protocol";
+import { Logger } from "@/infra/logger/usecases/logger-protocol";
 import { LoggerUseCase } from "@/domain/usecases/logger-usecase";
 
 export class LoggerService implements LoggerUseCase {

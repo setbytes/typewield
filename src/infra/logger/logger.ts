@@ -1,4 +1,4 @@
-import { Logger } from "@/infra/logger/protocols/logger-protocol";
+import { Logger } from "@/infra/logger/usecases/logger-protocol";
 
 export class LoggerImpl implements Logger {
   log(...args: Array<any>): void {

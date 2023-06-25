@@ -1,5 +1,5 @@
 import { CacheOptions } from "@/domain/models/cache";
-import { CacheDatabase } from "@/infra/cache/protocols/cache-protocol";
+import { CacheDatabase } from "@/infra/cache/usecases/cache-database";
 import { CacheImpl } from "@/infra/cache/cache";
 
 export class CacheSingleton {

@@ -1,6 +1,6 @@
 import { CacheUseCase } from "@/domain/usecases/cache-usecase";
-import { CacheDatabase } from "@/infra/cache/protocols/cache-protocol";
-import { Logger } from "@/infra/logger/protocols/logger-protocol";
+import { CacheDatabase } from "@/infra/cache/usecases/cache-database";
+import { Logger } from "@/infra/logger/usecases/logger-protocol";
 import { Cache, CacheOptions } from "@/domain/models/cache";
 
 export class CacheService implements CacheUseCase {

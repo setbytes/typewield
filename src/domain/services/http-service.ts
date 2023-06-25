@@ -1,5 +1,5 @@
-import { Logger } from "@/infra/logger/protocols/logger-protocol";
-import { HttpClient } from "@/infra/http/protocols/http-protocol";
+import { Logger } from "@/infra/logger/usecases/logger-protocol";
+import { HttpClient } from "@/infra/http/usecases/http-client";
 import { HttpClientOptions, HttpRequest } from "@/domain/models/http";
 import { HttpUseCase } from "@/domain/usecases/http-usecase";
 

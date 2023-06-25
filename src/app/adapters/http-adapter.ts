@@ -15,7 +15,7 @@ export class HttpAdapter {
       });
 
       const httpRequest = HttpFactory.createHttpRequest(this._httpClientOptions);
-      return httpRequest.send({ method, url: parseUrl, data, params: queries, headers: options }, functionName);
+      return await httpRequest.send({ method, url: parseUrl, data, params: queries, headers: options }, functionName);
     };
   }
 }

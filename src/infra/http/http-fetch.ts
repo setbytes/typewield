@@ -1,6 +1,7 @@
-import { HttpClient } from "@/infra/http/protocols/http-protocol";
+import { HttpClient } from "@/infra/http/usecases/http-client";
 import { HttpRequest, HttpResponse } from "@/domain/models/http";
-export class HttpClientImpl implements HttpClient {
+
+export class HttpFetchImpl implements HttpClient {
   async send(request: HttpRequest): Promise<HttpResponse<any>> {
     const { method, headers, data, params, url } = request;
     const endpoint = params ? url + "?" + new URLSearchParams(params) : url;
