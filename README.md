@@ -1,11 +1,11 @@
 ## How to use
 ```shell
-npm i typescript-decorator
+npm i typewield
 ```
 
 ### @Logger
 ```js
-import { Logger } from 'typescript-decorator'
+import { Logger } from 'typewield'
 
 class TestDecorator {
   @Logger
@@ -25,7 +25,7 @@ new TestDecorator().logging('Hello', 2023)
 
 ### @Cache
 ```js
-import { Cache } from 'typescript-decorator'
+import { Cache } from 'typewield'
 
 class CacheDecorator {
   @Cache
@@ -47,7 +47,7 @@ console.log(resultWithCache)
 
 ### @CacheParam
 ```js
-import { CacheParam } from 'typescript-decorator'
+import { CacheParam } from 'typewield'
 
 class CacheParamDecorator {
   // expire: time in milliseconds for the cache to expire. 30 seconds by default

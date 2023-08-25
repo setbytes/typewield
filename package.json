@@ -1,6 +1,6 @@
 {
-  "name": "typescript-decorator",
-  "version": "0.3.1",
+  "name": "typewield",
+  "version": "0.3.2",
   "description": "Decorators for typescript",
   "author": "Lucas Lopes",
   "license": "MIT",
@@ -50,9 +50,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/lucasshz/typescript-decorator"
+    "url": "https://github.com/lucasshz/typewield"
   },
   "bugs": {
-    "url": "https://github.com/lucasshz/typescript-decorator/issues"
+    "url": "https://github.com/lucasshz/typewield/issues"
   }
 }
