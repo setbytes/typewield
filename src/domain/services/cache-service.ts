@@ -1,6 +1,6 @@
 import { CacheUseCase } from "@/domain/usecases/cache-usecase";
-import { CacheDatabase } from "@/infra/cache/usecases/cache-database";
-import { Logger } from "@/infra/logger/usecases/logger-protocol";
+import { CacheDatabase } from "@/infra/cache/cache-protocol";
+import { Logger } from "@/infra/logger/logger-protocol";
 import { Cache, CacheOptions } from "@/domain/models/cache";
 
 export class CacheService implements CacheUseCase {
@@ -14,7 +14,7 @@ export class CacheService implements CacheUseCase {
     this.logger = logger;
   }
 
-  get(key: string): Cache | undefined {
+  public get(key: string): Cache | undefined {
     if (!this.caches.has(key)) return;
     const cache = this.caches.get(key);
     if (this.caches.isExpired(cache)) {
@@ -23,9 +23,9 @@ export class CacheService implements CacheUseCase {
     return cache;
   }
 
-  cache(args: Array<any>, functionName: string, originalFunction: Function): any {
-    const key = JSON.stringify(args);
-    const isCache = this.get(key);
+  public cache(args: Array<any>, functionName: string, originalFunction: Function): any {
+    const cacheKey = functionName + JSON.stringify(args);
+    const isCache = this.get(cacheKey);
     if (isCache) {
       if (this.cacheOptions.logger) {
         this.logger.info("[CACHE]", `[${functionName}]`, isCache);
@@ -36,11 +36,11 @@ export class CacheService implements CacheUseCase {
       const result = originalFunction(...args);
       if (result instanceof Promise) {
         return result.then(data => {
-          this.caches.set(key, { data, expireAt });
+          this.caches.set(cacheKey, { data, expireAt });
           return data;
         });
       }
-      this.caches.set(key, { data: result, expireAt });
+      this.caches.set(cacheKey, { data: result, expireAt });
       return result;
     }
   }

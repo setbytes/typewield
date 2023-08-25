@@ -1,4 +1,4 @@
-import { Logger } from "@/infra/logger/usecases/logger-protocol";
+import { Logger } from "@/infra/logger/logger-protocol";
 import { LoggerUseCase } from "@/domain/usecases/logger-usecase";
 
 export class LoggerService implements LoggerUseCase {
@@ -8,7 +8,7 @@ export class LoggerService implements LoggerUseCase {
     this.logger = logger;
   }
 
-  log(params: Array<any>, functionName: string, originalFunction: Function): any {
+  public log(params: Array<any>, functionName: string, originalFunction: Function): any {
     if (params.length) {
       this.logger.info("[INPUT]", `[${functionName}]`, params);
     }

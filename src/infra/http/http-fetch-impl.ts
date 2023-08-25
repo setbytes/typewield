@@ -1,8 +1,8 @@
-import { HttpClient } from "@/infra/http/usecases/http-client";
+import { HttpClient } from "@/infra/http/http-client-protocol";
 import { HttpRequest, HttpResponse } from "@/domain/models/http";
 
 export class HttpFetchImpl implements HttpClient {
-  async send(request: HttpRequest): Promise<HttpResponse<any>> {
+  public async send(request: HttpRequest): Promise<HttpResponse<any>> {
     const { method, headers, data, params, url } = request;
     const endpoint = params ? url + "?" + new URLSearchParams(params) : url;
     return await fetch(endpoint, { method, headers, body: JSON.stringify(data) })

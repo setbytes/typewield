@@ -1,4 +1,4 @@
-import { HttpClient } from "@/infra/http/usecases/http-client";
+import { HttpClient } from "@/infra/http/http-client-protocol";
 import { HttpRequest, HttpResponse } from "@/domain/models/http";
 
 type AxiosApp = any
@@ -9,7 +9,7 @@ export class HttpAxiosImpl implements HttpClient {
     this.http = http;
   }
 
-  async send(request: HttpRequest): Promise<HttpResponse<any>> {
+  public async send(request: HttpRequest): Promise<HttpResponse<any>> {
     return this.http(request).then(response => ({ statusCode: response.status, data: response.data }));
   }
 }

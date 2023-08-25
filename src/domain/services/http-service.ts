@@ -1,5 +1,5 @@
-import { Logger } from "@/infra/logger/usecases/logger-protocol";
-import { HttpClient } from "@/infra/http/usecases/http-client";
+import { Logger } from "@/infra/logger/logger-protocol";
+import { HttpClient } from "@/infra/http/http-client-protocol";
 import { HttpClientOptions, HttpRequest } from "@/domain/models/http";
 import { HttpUseCase } from "@/domain/usecases/http-usecase";
 
@@ -14,7 +14,7 @@ export class HttpService implements HttpUseCase {
     this.httpClientOptions = httpClientOptions;
   }
 
-  async send(request: HttpRequest, functionName: string): Promise<any> {
+  public async send(request: HttpRequest, functionName: string): Promise<any> {
     let baseURL = request.url.trim();
     if (!request.url.startsWith("http")) {
       baseURL = this.httpClientOptions.baseURL || this.httpClientOptions?.axiosInstance.defaults.baseURL;
@@ -28,6 +28,6 @@ export class HttpService implements HttpUseCase {
       this.logger.info(`[${typeMethod}]`, `[${functionName}]`, ...logList);
     }
     request.url = baseURL;
-    return this.http.send(request);
+    return await this.http.send(request);
   }
 }

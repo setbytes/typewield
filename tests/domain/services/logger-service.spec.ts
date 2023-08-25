@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import { Logger } from "@/infra/logger/usecases/logger-protocol";
+import { Logger } from "@/infra/logger/logger-protocol";
 import { LoggerUseCase } from "@/domain/usecases/logger-usecase";
 import { LoggerService } from "@/domain/services/logger-service";
 

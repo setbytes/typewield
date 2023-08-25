@@ -1,5 +1,5 @@
 import { Cache, CacheOptions } from "@/domain/models/cache";
-import { CacheDatabase } from "@/infra/cache/usecases/cache-database";
+import { CacheDatabase } from "@/infra/cache/cache-protocol";
 
 export class CacheImpl implements CacheDatabase {
   private readonly cacheOptions: CacheOptions;
@@ -12,19 +12,19 @@ export class CacheImpl implements CacheDatabase {
     }
   }
 
-  startBackgroundDeletion(): void {
+  private startBackgroundDeletion(): void {
     setInterval(() => {
       this.deleteExpired();
     }, this.cacheOptions.checkInterval || 300_000); // 5 minutes
   }
 
-  isExpired(cache: Cache): boolean {
+  public isExpired(cache: Cache): boolean {
     const timestampNow = Date.now();
     const millisecondsToExpire = this.cacheOptions.expire || 30_000; // 30 seconds
     return (timestampNow - cache.expireAt) > millisecondsToExpire;
   }
 
-  deleteExpired(): boolean {
+  public deleteExpired(): boolean {
     const cacheMap = this.caches;
     for (const [key, cache] of cacheMap) {
       if (this.isExpired(cache)) {
@@ -34,23 +34,23 @@ export class CacheImpl implements CacheDatabase {
     return true;
   }
 
-  get(key: string): Cache {
+  public get(key: string): Cache {
     return this.caches.get(key) as Cache;
   }
 
-  has(key: string): boolean {
+  public has(key: string): boolean {
     return this.caches.has(key);
   }
 
-  delete(key: string): boolean {
+  public delete(key: string): boolean {
     return this.caches.delete(key);
   }
 
-  getAll(): Map<string, Cache> {
+  public getAll(): Map<string, Cache> {
     return this.caches;
   }
 
-  set(key: string, data: Cache): void {
+  public set(key: string, data: Cache): void {
     this.caches.set(key, data);
   }
 }
