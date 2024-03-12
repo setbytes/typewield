@@ -1,8 +1,12 @@
 {
   "name": "typewield",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Decorators for typescript",
-  "author": "Lucas Lopes",
+  "author": {
+    "name": "Lucas Lopes",
+    "email": "lucass.code@gmail.com",
+    "url": "https://setbytes.com"
+  },
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -50,9 +54,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/lucasshz/typewield"
+    "url": "https://github.com/setbytes/typewield"
   },
   "bugs": {
-    "url": "https://github.com/lucasshz/typewield/issues"
+    "url": "https://github.com/setbytes/typewield/issues"
   }
 }
