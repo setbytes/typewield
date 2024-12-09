@@ -103,3 +103,39 @@ class HttpRequest {
 // @PostRequest @GetRequest @PutRequest @DeleteRequest @HeadRequest 
 // @PurgeRequest @LinkRequest @UnlinkRequest @OptionsRequest @PatchRequest
 ```
+
+### Implementation example
+```ts
+function getAxiosInstance(): AxiosInstance {
+  return axios.create({});
+}
+
+@HttpClient({ axiosInstance: getAxiosInstance() })
+export class USCentralDatastoreClient implements DBMSClientServer {
+  [x: string]: any;
+  setBaseURL(httpClientHost: string): void {
+    // typewield config
+    this._httpClientOptions.axiosInstance.defaults.baseURL = httpClientHost;
+  }
+
+  setAuthorization(token: string): void {
+    // typewield config
+    this._httpClientOptions.axiosInstance.defaults.headers.common.Authorization = token;
+  }
+
+  @PostRequest("/v1/datastores")
+  async handleCreateDatabaseInstance(@Body data: { name: string, username: string, password?: string, type: string }): Promise<{ message: string }> {
+    throw new Error("Method not implemented.");
+  }
+
+  @DeleteRequest("/v1/datastores")
+  async handleDeleteDatabaseInstance(@Body data: { name: string, username: string, password?: string, type: string }): Promise<{ message: string }> {
+    throw new Error("Method not implemented.");
+  }
+
+  @PutRequest("/v1/datastores")
+  async handleUpdateDatabaseInstance(@Body data: { name: string, username: string, password?: string, type: string }): Promise<{ message: string }> {
+    throw new Error("Method not implemented.");
+  }
+}
+```
