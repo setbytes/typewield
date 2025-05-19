@@ -35,7 +35,7 @@ describe("@Logger Decorator", () => {
         const result = await new Promise((resolve) => {
           setTimeout(() => {
             resolve("promise");
-          }, 40);
+          }, 5);
         });
         return result;
       }

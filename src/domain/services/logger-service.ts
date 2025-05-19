@@ -8,21 +8,23 @@ export class LoggerService implements LoggerUseCase {
     this.logger = logger;
   }
 
-  public log(params: Array<any>, functionName: string, originalFunction: Function): any {
+  public log(params: Array<any>, functionName: string, originalFunction: Function, time?: number): any {
+    const timer = time || Date.now();
     if (params.length) {
-      this.logger.info("[INPUT]", `[${functionName}]`, params);
+      this.logger.info("[INPUT]", `[${timer}]`, `[${functionName}]`, params);
     }
     try {
       const result = originalFunction(...params);
-      if (result instanceof Promise) { 
+      if (result instanceof Promise) {
         return result.then((data) => {
-          this.logger.info("[OUTPUT]", `[${functionName}]`, data);
+          this.logger.info("[OUTPUT]", `[${timer}]`, `[${functionName}]`, data);
+          return data;
         });
       }
-      this.logger.info("[OUTPUT]", `[${functionName}]`, result);
+      this.logger.info("[OUTPUT]", `[${timer}]`, `[${functionName}]`, result);
       return result;
     } catch (error) {
-      this.logger.error("[OUTPUT]", `[${functionName}]`, error.message);
+      this.logger.error("[OUTPUT]", `[${timer}]`, `[${functionName}]`, error.message);
       throw error;
     }
   }

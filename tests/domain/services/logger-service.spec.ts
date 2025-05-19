@@ -22,9 +22,10 @@ describe("LoggerService", () => {
     const functionName = faker.random.word();
     const originalFunction = jest.fn().mockReturnValue(inputParams[0]);
 
-    loggerService.log(inputParams, functionName, originalFunction);
+    const timer = Date.now();
+    loggerService.log(inputParams, functionName, originalFunction, timer);
 
-    expect(logger.info).toHaveBeenCalledWith("[INPUT]", `[${functionName}]`, inputParams);
+    expect(logger.info).toHaveBeenCalledWith("[INPUT]", `[${timer}]`, `[${functionName}]`, inputParams);
   });
 
   it("should call originalFunction with input params and return its result", () => {
@@ -43,9 +44,10 @@ describe("LoggerService", () => {
     const functionName = faker.random.word();
     const originalFunction = jest.fn().mockReturnValue(Promise.resolve(inputParams[0]));
 
-    await loggerService.log(inputParams, functionName, originalFunction);
+    const timer = Date.now();
+    await loggerService.log(inputParams, functionName, originalFunction, timer);
 
-    expect(logger.info).toHaveBeenCalledWith("[INPUT]", `[${functionName}]`, inputParams);
+    expect(logger.info).toHaveBeenCalledWith("[INPUT]", `[${timer}]`, `[${functionName}]`, inputParams);
   });
 
   it("should call logger.error with error message and function name", () => {
@@ -53,8 +55,8 @@ describe("LoggerService", () => {
     const functionName = faker.random.word();
     const errorMessage = faker.random.word();
     const originalFunction = jest.fn().mockImplementation(() => { throw new Error(errorMessage); });
-
-    expect(() => loggerService.log(inputParams, functionName, originalFunction)).toThrowError(errorMessage);
-    expect(logger.error).toHaveBeenCalledWith("[OUTPUT]", `[${functionName}]`, errorMessage);
+    const timer = Date.now();
+    expect(() => loggerService.log(inputParams, functionName, originalFunction, timer)).toThrowError(errorMessage);
+    expect(logger.error).toHaveBeenCalledWith("[OUTPUT]", `[${timer}]`, `[${functionName}]`, errorMessage);
   });
 });
