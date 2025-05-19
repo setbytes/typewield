@@ -7,15 +7,6 @@ export class CacheImpl implements CacheDatabase {
 
   constructor(cacheOptions: CacheOptions) {
     this.cacheOptions = cacheOptions;
-    if (process.env.NODE_ENV != "test") {
-      this.startBackgroundDeletion();
-    }
-  }
-
-  private startBackgroundDeletion(): void {
-    setInterval(() => {
-      this.deleteExpired();
-    }, this.cacheOptions.checkInterval || 300_000); // 5 minutes
   }
 
   public isExpired(cache: Cache): boolean {
@@ -39,6 +30,7 @@ export class CacheImpl implements CacheDatabase {
   }
 
   public has(key: string): boolean {
+    this.deleteExpired();
     return this.caches.has(key);
   }
 

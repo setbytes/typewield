@@ -8,7 +8,7 @@ export class CacheService implements CacheUseCase {
   private readonly caches: CacheDatabase;
   private readonly logger: Logger;
 
-  constructor(cacheOptions: CacheOptions, caches: CacheDatabase, logger: Logger) {
+  public constructor(cacheOptions: CacheOptions, caches: CacheDatabase, logger: Logger) {
     this.cacheOptions = cacheOptions;
     this.caches = caches;
     this.logger = logger;

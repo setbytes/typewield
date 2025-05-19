@@ -4,7 +4,7 @@ import { LoggerUseCase } from "@/domain/usecases/logger-usecase";
 export class LoggerService implements LoggerUseCase {
   private readonly logger: Logger;
 
-  constructor(logger: Logger) {
+  public constructor(logger: Logger) {
     this.logger = logger;
   }
 
@@ -14,9 +14,12 @@ export class LoggerService implements LoggerUseCase {
     }
     try {
       const result = originalFunction(...params);
-      Promise.resolve(result).then((data) => {
-        this.logger.info("[OUTPUT]", `[${functionName}]`, data);
-      });
+      if (result instanceof Promise) { 
+        return result.then((data) => {
+          this.logger.info("[OUTPUT]", `[${functionName}]`, data);
+        });
+      }
+      this.logger.info("[OUTPUT]", `[${functionName}]`, result);
       return result;
     } catch (error) {
       this.logger.error("[OUTPUT]", `[${functionName}]`, error.message);

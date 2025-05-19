@@ -1,6 +1,6 @@
 {
   "name": "typewield",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "Decorators for typescript",
   "author": {
     "name": "Lucas Lopes",
@@ -33,7 +33,7 @@
   "devDependencies": {
     "@faker-js/faker": "^7.6.0",
     "@types/jest": "^29.2.6",
-    "@types/node": "^18.11.18",
+    "@types/node": "^18.19.101",
     "@typescript-eslint/eslint-plugin": "^5.48.2",
     "axios": "^1.2.5",
     "babel-plugin-module-resolver": "^5.0.0",

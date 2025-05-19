@@ -9,7 +9,7 @@ export class HttpAxiosImpl implements HttpClient {
     this.http = http;
   }
 
-  public async send(request: HttpRequest): Promise<HttpResponse<any>> {
+  public async send(request: HttpRequest): Promise<HttpResponse> {
     return this.http(request).then(response => ({ statusCode: response.status, data: response.data }));
   }
 }

@@ -9,15 +9,15 @@ export type Method = | "get" | "GET"
 | "link" | "LINK"
 | "unlink" | "UNLINK"
 
-export type HttpRequest = {
+export type HttpRequest<T = any> = {
   headers?: any
   url: string
-  params?: any
+  params?: T
   method?: Method
-  data?: any
+  data?: T
 }
 
-export type HttpResponse<T> = {
+export type HttpResponse<T = any> = {
   statusCode: number
   data?: T
 }

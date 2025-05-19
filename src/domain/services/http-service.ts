@@ -8,7 +8,7 @@ export class HttpService implements HttpUseCase {
   private readonly logger: Logger;
   private readonly httpClientOptions: HttpClientOptions;
 
-  constructor(httpClientOptions: HttpClientOptions, http: HttpClient, logger: Logger) {
+  public constructor(httpClientOptions: HttpClientOptions, http: HttpClient, logger: Logger) {
     this.http = http;
     this.logger = logger;
     this.httpClientOptions = httpClientOptions;
