@@ -1,6 +1,6 @@
 {
   "name": "typewield",
-  "version": "0.3.7",
+  "version": "0.3.8",
   "description": "Decorators for typescript",
   "author": {
     "name": "Lucas Lopes",

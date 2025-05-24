@@ -20,6 +20,10 @@ export class LoggerService implements LoggerUseCase {
           if (params.length) this.logger.info("[INPUT]", `[${timer}]`, `[${milliseconds}ms]`, `[${functionName}]`, params);
           this.logger.info("[OUTPUT]", `[${timer}]`, `[${milliseconds}ms]`, `[${functionName}]`, data);
           return data;
+        }).catch(error => {
+          if (params.length) this.logger.info("[INPUT]", `[${timer}]`, `[${milliseconds}ms]`, `[${functionName}]`, params);
+          this.logger.info("[OUTPUT]", `[${timer}]`, `[${milliseconds}ms]`, `[${functionName}]`, error);
+          throw error;
         });
       }
       const end = performance.now();
