@@ -16,19 +16,22 @@ export class LoggerService implements LoggerUseCase {
       if (result instanceof Promise) {
         return result.then((data) => {
           const end = performance.now();
-          if (params.length) this.logger.info("[INPUT]", `[${timer}]`, `[${functionName}]`, params);
-          this.logger.info("[OUTPUT]", `[${timer}]`, `[${end - start}ms]`, `[${functionName}]`, data);
+          const milliseconds = (end - start).toFixed(2);
+          if (params.length) this.logger.info("[INPUT]", `[${timer}]`, `[${milliseconds}ms]`, `[${functionName}]`, params);
+          this.logger.info("[OUTPUT]", `[${timer}]`, `[${milliseconds}ms]`, `[${functionName}]`, data);
           return data;
         });
       }
       const end = performance.now();
-      if (params.length) this.logger.info("[INPUT]", `[${timer}]`, `[${end - start}ms]`, `[${functionName}]`, params);
-      this.logger.info("[OUTPUT]", `[${timer}]`, `[${end - start}ms]`, `[${functionName}]`, result);
+      const milliseconds = (end - start).toFixed(2);
+      if (params.length) this.logger.info("[INPUT]", `[${timer}]`, `[${milliseconds}ms]`, `[${functionName}]`, params);
+      this.logger.info("[OUTPUT]", `[${timer}]`, `[${milliseconds}ms]`, `[${functionName}]`, result);
       return result;
     } catch (error) {
       const end = performance.now();
-      if (params.length) this.logger.info("[INPUT]", `[${timer}]`, `[${end - start}ms]`, `[${functionName}]`, params);
-      this.logger.error("[OUTPUT]", `[${timer}]`, `[${end - start}ms]`, `[${functionName}]`, error.message);
+      const milliseconds = (end - start).toFixed(2);
+      if (params.length) this.logger.info("[INPUT]", `[${timer}]`, `[${milliseconds}ms]`, `[${functionName}]`, params);
+      this.logger.error("[OUTPUT]", `[${timer}]`, `[${milliseconds}ms]`, `[${functionName}]`, error.message);
       throw error;
     }
   }
